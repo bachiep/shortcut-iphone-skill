@@ -26,8 +26,25 @@ iCloud để học kỹ thuật và tái sử dụng.
    bin/shortcut-cli compile spec.json -o "Ten Phim Tat.shortcut"
    bin/shortcut-cli info "Ten Phim Tat.shortcut"   # kiểm tra số action, cấu trúc
    ```
-   Định dạng spec: `{"WFWorkflowName": "...", "WFWorkflowActions": [{"WFWorkflowActionIdentifier": "is.workflow.actions.gettext", "WFWorkflowActionParameters": {...}}]}`.
-   Tool tự sinh UUID và GroupingIdentifier nếu thiếu.
+   Định dạng spec: `{"WFWorkflowName": "...", "WFWorkflowActions": [{"WFWorkflowActionIdentifier": "is.workflow.actions.gettext", "WFWorkflowActionParameters": {"UUID": "...", ...}}]}`.
+   Xem mẫu đã validate trong `templates/` (minimal, menu-driven, http-api).
+   **Lưu ý quan trọng**: tự sinh `UUID` **viết hoa** cho MỌI action và tự nối
+   `OutputUUID` trong Magic Variable cho đúng — tool compile KHÔNG tự sinh UUID,
+   nó chỉ chuẩn hóa cấu trúc (canonical normalization) để file import không bị
+   mất action. `info`/`verify` chỉ kiểm tra cấu trúc, không đảm bảo logic chạy đúng.
+
+## Đọc gì trước (progressive disclosure)
+
+| Việc cần làm | Đọc file này trước |
+|---|---|
+| Dựng shortcut mới từ đầu | `templates/` + `references/control-flow.md` |
+| Phân tích shortcut có sẵn | `references/signing-distribution.md` (§ đọc shortcut người khác) |
+| Cần action/identifier nào | `references/actions.md` |
+| Menu, update, mẹo hệ thống | `references/patterns-phimtat.md` |
+| Vượt giới hạn Shortcuts (JS, API, automation) | `references/advanced.md` |
+| Ký file, phát hành, update | `references/signing-distribution.md` |
+| Shortcut lỗi, debug | `references/debugging.md` |
+| Mở app/Cài đặt bằng URL | `references/url-schemes.md` |
 5. **Ký file** (bắt buộc từ iOS 17, không ký thì không import được):
    - Có Mac: `shortcuts sign --mode anyone --input In.shortcut --output Out.shortcut`
    - Không có Mac: POST plist chưa ký tới `https://hubsign.routinehub.services/sign`
@@ -61,8 +78,10 @@ Mỗi lần giao cho người dùng:
 
 ## Operating Rules
 
-1. **Donor-based**: tái dùng tham số từ file thật đã decompile; không bịa
-   identifier hay tên tham số. Tra cứu trong `references/actions.md`.
+1. **Donor-based + no invention**: tái dùng tham số từ file thật đã decompile; không bịa
+   identifier hay tên tham số. Tra cứu trong `references/actions.md`. Identifier nào
+   chưa từng thấy trong file thật thì đánh dấu "chưa verify" và đối chiếu bằng file
+   export thật trước khi phát hành.
 2. **Control flow**: If/Repeat/Menu dùng chung một `GroupingIdentifier` (UUID) và
    `WFControlFlowMode` (0=mở, 1=nhánh giữa, 2=đóng). Lệch là file hỏng.
    Quy tắc build cứng: `references/control-flow.md`.

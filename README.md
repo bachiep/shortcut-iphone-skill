@@ -57,6 +57,7 @@ python3 bin/shortcut-cli info "Ten.shortcut"
 - `references/signing-distribution.md` — ký file, link iCloud, 3 mô hình update
 - `references/advanced.md` — Scriptable, x-callback-url, automation, gọi API ngoài
 - `references/debugging.md` — quy trình debug, lỗi thường gặp
+- `templates/` — 3 mẫu spec JSON đã validate (minimal, menu-driven, http-api), dùng làm điểm khởi đầu
 - `bin/shortcut-cli` — tool fetch/decompile/compile (vendored từ
   [hightech-ninja/shortcut-cli](https://github.com/hightech-ninja/shortcut-cli), MIT)
 

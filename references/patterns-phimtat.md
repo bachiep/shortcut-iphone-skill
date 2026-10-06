@@ -96,6 +96,13 @@ Action Button (84), Tạo nhạc chuông (74), Tạo Sticker (78).
 33. **Release tử tế**: version dạng `X.Y`, mỗi bản có release notes + ngày UTC +
     version history; badge markdown khi hỗ trợ updater.
 
+## Nguyên tắc productization (từ cộng đồng quốc tế)
+
+34. **Shortcut gọn, server làm việc nặng**: giữ shortcut vài action điều phối,
+    logic phức tạp đẩy lên server/API — dễ bảo trì, update không cần phát hành lại.
+35. **Webhook cho automation**: dùng dịch vụ webhook (vd ntfy.sh) làm cầu nối khi
+    cần trigger từ ngoài gọi vào mà không có Pushcut.
+
 ## Điểm mạnh / yếu trong phong cách của họ
 
 **Mạnh**: dictionary-driven (dễ mở rộng); on-device first cho logic thuần túy;

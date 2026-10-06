@@ -12,6 +12,7 @@
 |---|---|---|
 | Apple CLI (macOS) | `shortcuts sign --mode anyone --input In.shortcut --output Out.shortcut` | Chính thức, cần đăng nhập iCloud trên máy Mac |
 | HubSign (mọi OS) | POST JSON tới `https://hubsign.routinehub.services/sign` | Dịch vụ cộng đồng của RoutineHub, trả về file AEA1 đã ký |
+| Shortcut "Sign Shortcut File" (trên iPhone) | Cài từ RoutineHub #26044, chạy trên máy | Ký ngay trên iPhone khi không có Mac và HubSign bị chặn |
 
 Gọi HubSign bằng JSON: `{"shortcutName": "<tên>", "shortcut": "<plist XML dạng chuỗi>"}`,
 header `Content-Type: application/json`. Plist gửi đi nên ở định dạng XML

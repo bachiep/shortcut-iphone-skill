@@ -83,7 +83,11 @@ shortcut 1 action trong app rồi export.
 
 ## Quy tắc cứng khi dựng file bằng code (đã verify)
 
-1. **UUID viết HOA**; `WFControlFlowMode` là **integer**, không phải string.
+1. **UUID viết HOA — và agent phải TỰ SINH cho mọi action.** Tool `compile` KHÔNG
+   tự sinh UUID; nếu thiếu, Magic Variable sẽ trỏ vào khoảng không và shortcut
+   chạy sai lặng lẽ. `info`/`verify` không phát hiện được lỗi này — chỉ kiểm tra
+   bằng cách decompile ngược và đối chiếu `OutputUUID`.
+2. `WFControlFlowMode` là **integer** (0=mở, 1=giữa, 2=đóng), không phải string.
 2. Mọi khối control-flow mở phải có đóng **cùng GroupingIdentifier**.
 3. **Tên shortcut sau import = tên file lúc ký**, không phải `WFWorkflowName`.
    Đặt tên file output đúng tên muốn hiển thị, không thêm hậu tố `_signed`.
