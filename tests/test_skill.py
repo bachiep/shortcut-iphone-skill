@@ -176,7 +176,8 @@ class TestValidator(unittest.TestCase):
         self.assertIn("WFCondition", r.stdout)
 
 
-class TestInstallScript(unittest.TestCase):    def test_install_to_target(self):
+class TestInstallScript(unittest.TestCase):
+    def test_install_to_target(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = str(Path(tmp) / "my-skills" / "tao-phim-tat-iphone")
             r = subprocess.run(["bash", str(REPO / "install.sh"),
