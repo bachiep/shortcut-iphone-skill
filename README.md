@@ -6,11 +6,26 @@ Skill dành cho AI agent: thiết kế, dựng và phát hành phím tắt iPhon
 
 ## Cài đặt
 
-Clone repo này vào thư mục skill của agent:
+**Cho agent (khuyên dùng):**
+
+```bash
+git clone https://github.com/bachiep/shortcut-iphone-skill.git
+cd shortcut-iphone-skill
+./install.sh                        # cài vào ~/.claude/skills/tao-phim-tat-iphone
+# hoặc chỉ định thư mục:
+./install.sh --target ~/workspace/skills/tao-phim-tat-iphone
+```
+
+**Thủ công:** clone repo này vào thư mục skill của agent rồi cho agent đọc
+`SKILL.md`:
 
 ```bash
 git clone https://github.com/bachiep/shortcut-iphone-skill.git ~/workspace/skills/tao-phim-tat-iphone
 ```
+
+Skill tuân theo chuẩn agent skill: `SKILL.md` ở root với frontmatter
+(`name`, `description` song ngữ Việt/Anh để agent dễ nhận diện),
+`tài liệu chi tiết trong `references/`, tool thực thi trong `bin/`.
 
 ## Cách dùng
 

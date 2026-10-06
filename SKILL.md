@@ -1,6 +1,6 @@
 ---
-name: tao-phim-tat-iphone
-description: Thiết kế, dựng và phát hành phím tắt iPhone (.shortcut): phân tích shortcut có sẵn từ link iCloud, dựng file mới từ đặc tả, ký và đóng gói kèm hướng dẫn tiếng Việt theo phong cách phimtat.vn. Dùng khi người dùng muốn tạo mới, sửa, phân tích hoặc phát hành phím tắt iPhone.
+name: "tao_phim_tat_iphone"
+description: "Thiết kế, dựng và phát hành phím tắt iPhone (.shortcut): phân tích shortcut có sẵn từ link iCloud, dựng file mới từ đặc tả, ký và đóng gói kèm hướng dẫn tiếng Việt theo phong cách phimtat.vn. Dùng khi người dùng muốn tạo mới, sửa, phân tích hoặc phát hành phím tắt iPhone. / Design, build and publish iPhone Shortcuts: analyze existing shortcuts from iCloud links, compile new .shortcut files from spec, sign and package with Vietnamese guides."
 ---
 
 # Tạo phím tắt iPhone
