@@ -11,10 +11,15 @@ Skill dành cho AI agent: thiết kế, dựng và phát hành phím tắt iPhon
 ```bash
 git clone https://github.com/bachiep/shortcut-iphone-skill.git
 cd shortcut-iphone-skill
-./install.sh                        # cài vào ~/.claude/skills/tao-phim-tat-iphone
-# hoặc chỉ định thư mục:
-./install.sh --target ~/workspace/skills/tao-phim-tat-iphone
+./install.sh   # tự phát hiện thư mục skill của agent trên máy rồi cài vào
 ```
+
+Mỗi agent để skill một chỗ khác nhau (Claude Code: `~/.claude/skills/`,
+Muse: `~/workspace/skills/`, ...) nên script sẽ tự tìm thay vì cài cứng một
+đường dẫn. Muốn chỉ định tay: `./install.sh --target /đường/dẫn/tới/skill`.
+Bản chất skill không phụ thuộc vị trí — chỉ cần copy nguyên thư mục
+(`SKILL.md` + `bin/` + `references/`) vào nơi agent đọc skill rồi cho agent
+đọc `SKILL.md`.
 
 **Thủ công:** clone repo này vào thư mục skill của agent rồi cho agent đọc
 `SKILL.md`:
