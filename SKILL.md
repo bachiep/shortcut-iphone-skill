@@ -1,6 +1,7 @@
 ---
 name: "tao_phim_tat_iphone"
 description: "Thiết kế, dựng và phát hành phím tắt iPhone (.shortcut): phân tích shortcut có sẵn từ link iCloud, dựng file mới từ đặc tả, ký và đóng gói kèm hướng dẫn tiếng Việt theo phong cách phimtat.vn. Dùng khi người dùng muốn tạo mới, sửa, phân tích hoặc phát hành phím tắt iPhone. / Design, build and publish iPhone Shortcuts: analyze existing shortcuts from iCloud links, compile new .shortcut files from spec, sign and package with Vietnamese guides."
+metadata: {"version": "1.1.0"}
 ---
 
 # Tạo phím tắt iPhone
@@ -69,8 +70,14 @@ build), `url-schemes.md`, `signing-distribution.md` (ký, phát hành, update),
 
 - `bin/shortcut-cli` (vendored từ `hightech-ninja/shortcut-cli`, MIT — xem
   `bin/LICENSE.shortcut-cli`): `fetch` (tải từ link iCloud), `decompile --pretty`
-  (đọc logic), `compile` (dựng từ JSON), `info`/`verify` (kiểm tra).
-- Chạy: `python3 bin/shortcut-cli <lệnh>` từ thư mục skill.
+  (đọc logic), `compile --no-sign` (dựng từ JSON), `info`/`verify` (kiểm tra).
+- `bin/validate-shortcut`: kiểm tra hard rules của skill (UUID viết hoa/duy nhất,
+  Magic Variable trỏ đúng, grouping cân bằng, mã WFCondition chuẩn). Chạy sau mỗi
+  lần compile: `python3 bin/validate-shortcut "Ten.shortcut"`.
+- `templates/`: 3 mẫu spec đã validate. `examples/menu-nguon/`: ví dụ hoàn chỉnh
+  end-to-end (spec + file + hướng dẫn kiểu phimtat.vn).
+- Chạy: `python3 bin/<tool> ...` từ thư mục skill. Test suite: `python3 -m unittest
+  discover -s tests` (10 tests).
 
 ## Output Contract
 

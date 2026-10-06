@@ -139,8 +139,44 @@ class TestTemplates(unittest.TestCase):
             self.assertEqual(n1, n2, f"{name} round-trip mat action ({n1} -> {n2})")
 
 
-class TestInstallScript(unittest.TestCase):
-    def test_install_to_target(self):
+class TestValidator(unittest.TestCase):
+    VALIDATOR = [sys.executable, str(REPO / "bin" / "validate-shortcut")]
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.good = str(Path(self.tmp.name) / "good.shortcut")
+        r = run_cli("compile", "--no-sign",
+                    str(REPO / "templates" / "http-api.json"), "-o", self.good)
+        self.assertEqual(r.returncode, 0)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_valid_file_passes(self):
+        r = subprocess.run([*self.VALIDATOR, self.good],
+                           capture_output=True, text=True, timeout=60)
+        self.assertEqual(r.returncode, 0, r.stdout)
+        self.assertIn("DAT", r.stdout)
+
+    def test_broken_file_fails(self):
+        d = load_compiled(self.good)
+        # gay 3 loi: mat UUID, placeholder ref, ma dieu kien la
+        del d["WFWorkflowActions"][0]["WFWorkflowActionParameters"]["UUID"]
+        p2 = d["WFWorkflowActions"][2]["WFWorkflowActionParameters"]
+        p2["WFURL"]["Value"]["OutputUUID"] = "00000000-0000-0000-0000-000000000000"
+        d["WFWorkflowActions"][3]["WFWorkflowActionParameters"]["WFCondition"] = 42
+        bad = str(Path(self.tmp.name) / "bad.shortcut")
+        with open(bad, "wb") as f:
+            plistlib.dump(d, f)
+        r = subprocess.run([*self.VALIDATOR, bad],
+                           capture_output=True, text=True, timeout=60)
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("thieu UUID", r.stdout)
+        self.assertIn("placeholder", r.stdout)
+        self.assertIn("WFCondition", r.stdout)
+
+
+class TestInstallScript(unittest.TestCase):    def test_install_to_target(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = str(Path(tmp) / "my-skills" / "tao-phim-tat-iphone")
             r = subprocess.run(["bash", str(REPO / "install.sh"),
