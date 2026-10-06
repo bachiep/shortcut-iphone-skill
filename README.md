@@ -9,7 +9,7 @@ Skill dành cho AI agent: thiết kế, dựng và phát hành phím tắt iPhon
 Clone repo này vào thư mục skill của agent:
 
 ```bash
-git clone https://github.com/<user>/tao-phim-tat-iphone.git ~/workspace/skills/tao-phim-tat-iphone
+git clone https://github.com/bachiep/Shortcut-iphone-skill.git ~/workspace/skills/tao-phim-tat-iphone
 ```
 
 ## Cách dùng
