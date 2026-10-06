@@ -1,5 +1,7 @@
 # Tạo phím tắt iPhone
 
+[![test](https://github.com/bachiep/shortcut-iphone-skill/actions/workflows/test.yml/badge.svg)](https://github.com/bachiep/shortcut-iphone-skill/actions/workflows/test.yml)
+
 Skill dành cho AI agent: thiết kế, dựng và phát hành phím tắt iPhone (`.shortcut`)
 — từ phân tích shortcut có sẵn qua link iCloud, dựng file mới từ đặc tả, ký file,
 đến đóng gói kèm hướng dẫn tiếng Việt theo phong cách [phimtat.vn](https://phimtat.vn).

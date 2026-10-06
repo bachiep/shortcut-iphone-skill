@@ -23,15 +23,19 @@ iCloud để học kỹ thuật và tái sử dụng.
    Các pattern tái dùng: xem `references/patterns-phimtat.md`.
 4. **Viết spec JSON** rồi compile:
    ```bash
-   bin/shortcut-cli compile spec.json -o "Ten Phim Tat.shortcut"
+   bin/shortcut-cli compile --no-sign spec.json -o "Ten Phim Tat.shortcut"
    bin/shortcut-cli info "Ten Phim Tat.shortcut"   # kiểm tra số action, cấu trúc
    ```
    Định dạng spec: `{"WFWorkflowName": "...", "WFWorkflowActions": [{"WFWorkflowActionIdentifier": "is.workflow.actions.gettext", "WFWorkflowActionParameters": {"UUID": "...", ...}}]}`.
    Xem mẫu đã validate trong `templates/` (minimal, menu-driven, http-api).
-   **Lưu ý quan trọng**: tự sinh `UUID` **viết hoa** cho MỌI action và tự nối
-   `OutputUUID` trong Magic Variable cho đúng — tool compile KHÔNG tự sinh UUID,
-   nó chỉ chuẩn hóa cấu trúc (canonical normalization) để file import không bị
-   mất action. `info`/`verify` chỉ kiểm tra cấu trúc, không đảm bảo logic chạy đúng.
+   **Lưu ý quan trọng**:
+   - Tự sinh `UUID` **viết hoa** cho MỌI action và tự nối `OutputUUID` trong Magic
+     Variable cho đúng — tool compile KHÔNG tự sinh UUID, nó chỉ chuẩn hóa cấu
+     trúc (canonical normalization) để file import không bị mất action.
+   - `compile` mặc định ký file sau khi dựng; trên Linux ký thất bại (thoát mã lỗi)
+     nhưng file unsigned vẫn được ghi — luôn dùng `--no-sign` trên Linux rồi ký
+     riêng ở bước 5.
+   - `info`/`verify` chỉ kiểm tra cấu trúc, không đảm bảo logic chạy đúng.
 
 ## Đọc gì trước (progressive disclosure)
 
